@@ -1,24 +1,14 @@
-# README
+# Bookshelf
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Bundle Install
 
-Things you may want to cover:
+```bash
+bundle install --vendor/bundle --jobs=4
+```
 
-* Ruby version
+## Install GraphiQL APP
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```coffeescript
+brew cask install graphiql
+```
+https://electronjs.org/apps/graphiql
