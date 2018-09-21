@@ -9,7 +9,9 @@ class GraphqlController < ApplicationController
     Rails.logger.info "Logged in as \e[31m#{session&.user&.email}"
 
     context = {
-       current_user: session&.user
+       current_user: session&.user,
+       # ログアウトに必要なsessionのIDを定義
+       session_id: session&.id
     }
     result = BookshelfSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result

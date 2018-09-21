@@ -42,10 +42,21 @@ module Types
       end
     end
 
+    # 現在ログインしているcurrent_userを定義
     field :current_user, Types::UserType, null: false, description: "The currently logged user_type.rb"
 
     def current_user
       context[:current_user]
+    end
+
+    # ログアウトの定義
+    field :logout, Boolean, null: false
+
+    def logout
+      # 現在ログインしているユーザーのsession_idを探して、destroy_allすることでログアウトを実行
+      Session.where(id: context[:session_id]).destroy_all
+      # ログアウトに成功したらtrueを返す
+      true
     end
   end
 end
