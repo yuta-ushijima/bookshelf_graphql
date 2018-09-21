@@ -28,5 +28,18 @@ module Types
     def authors
       Author.all
     end
+
+    # ログインに失敗した時のことを考えて、nullを許可
+    field :login, String, null: true, description: "Login a user" do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
+    def login(email:, password:)
+      if user = User.where(email: email).first&.authenticate(password)
+        # ログインに成功したら、sessionのkeyを返す
+        user.sessions.create.key
+      end
+    end
   end
 end
