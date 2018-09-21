@@ -30,7 +30,7 @@ module Types
     end
 
     # ログインに失敗した時のことを考えて、nullを許可
-    field :login, String, null: true, description: "Login a user" do
+    field :login, String, null: true, description: "Login a user_type.rb" do
       argument :email, String, required: true
       argument :password, String, required: true
     end
@@ -40,6 +40,12 @@ module Types
         # ログインに成功したら、sessionのkeyを返す
         user.sessions.create.key
       end
+    end
+
+    field :current_user, Types::UserType, null: false, description: "The currently logged user_type.rb"
+
+    def current_user
+      context[:current_user]
     end
   end
 end

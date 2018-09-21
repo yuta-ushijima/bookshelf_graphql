@@ -6,7 +6,7 @@ class GraphqlController < ApplicationController
 
     # セッションに必要なHeader要素を定義
     session = Session.where(key: request.headers["Authorization"]).first
-    Rails.logger.info "Logged in as \e31m#{session&.user&.email}"
+    Rails.logger.info "Logged in as \e[31m#{session&.user&.email}"
 
     context = {
        current_user: session&.user
